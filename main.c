@@ -8,6 +8,9 @@
 
 #define PICO_OVERCLOCK_HZ 250000
 #define GPIO_PIN_PWM 4
+#define WRAP_VALUE 5
+#define CLOCK_DIVISION 1.0f
+#define DEFAULT_DUTY 3
 
 uint slice;
 
@@ -25,11 +28,11 @@ int main()
 
   slice = pwm_gpio_to_slice_num(GPIO_PIN_PWM);
   
-  pwm_set_wrap(slice_num, 5);
+  pwm_set_wrap(slice_num, WRAP_VALUE);
   
-  pwm_set_clkdiv(slice_num, 1.0f);
+  pwm_set_clkdiv(slice_num, CLOCK_DIVISION);
 
-  pwm_set_chan_level(slice_num, PWM_CHAN_A, 3);
+  pwm_set_chan_level(slice_num, PWM_CHAN_A, DEFAULT_DUTY);
 
   pwm_set_mask_enabled((1u << slice_num));
    
